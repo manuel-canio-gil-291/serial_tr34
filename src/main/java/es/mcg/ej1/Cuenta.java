@@ -12,7 +12,7 @@ public class Cuenta implements Serializable
     private Estado estado;
     private String nombre;
     private int nCuenta;
-    
+
     public Cuenta(String nombre, int nCuenta) 
     {
         this.nombre = nombre;
