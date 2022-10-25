@@ -19,17 +19,25 @@ public class LeerObjeto {
             objectInputStream = new ObjectInputStream(fileInputStream);
             fileInputStream2 = new FileInputStream(file2);
             objectInputStream2 = new ObjectInputStream(fileInputStream2);
-
-            Cuenta cuenta = (Cuenta) objectInputStream2.readObject();
-            Cliente cliente = (Cliente) objectInputStream.readObject();
-
-            if(cuenta.getEstado() == Estado.DEUDOR)
+            Cuenta cuenta = null;
+            Cliente cliente = null;
+            for(int i = 0; i < 10; i++)
             {
-                System.out.println(cliente);
+                cuenta = (Cuenta) objectInputStream2.readObject();
+                for(int j = 0; j < 10; j++)
+                {
+                    cliente = (Cliente) objectInputStream.readObject();
+                    if(cuenta.getEstado() == Estado.DEUDOR)
+                    {
+                        System.out.println(cliente);
+                    }
+                }
             }
+            
         }
         catch (IOException ioException) 
         {
+            System.out.println("Fin de lectura");
             ioException.printStackTrace();
         }
         catch (ClassNotFoundException notFoundException)
