@@ -9,13 +9,22 @@ import java.util.List;
 import java.util.Scanner;
 
 import es.mcg.ej2.AntiguoAlumno;
-
+/**
+ * Esta clase crea los datos del alumno, las tres notas y el correo o email.
+ * @author Manuel Canio Gil
+ * @version 1.0
+ */
 public class CrearObjeto {
+    /**
+     * Metodo ejecutable que guarda en el fichero las tres notas y el correo del alumno.
+     * @param args
+     */
     public static void main(String[] args) {
         File file = null;
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         Scanner sc = new Scanner(System.in);
+        //Hacemos una lista de alumnos
         List<AntiguoAlumno> antiguoAlumnos = null;
 
         try 
@@ -32,10 +41,13 @@ public class CrearObjeto {
             String nombre, correo;
             double nota1,nota2,nota3;
             do{
+                //Pedimos los datos necesarios, primero el nombre del alumno
                 System.out.print("Dime el nombre del alumno: ");
                 nombre = sc.nextLine();
+                //Despues el correo del alumno
                 System.out.print("Dime el correo del alumno: ");
                 correo = sc.nextLine();
+                //Y por ultimo las tres notas
                 System.out.println("Dime las notas del alumno");
                 System.out.print("Nota 1: ");
                 nota1 = sc.nextDouble();
@@ -44,6 +56,7 @@ public class CrearObjeto {
                 System.out.print("Nota 3: ");
                 nota3 = sc.nextDouble();
                 AntiguoAlumno alumno = new AntiguoAlumno(nombre, nota1, nota2, nota3, correo);
+                //Si el correo es valido lo almacena en la lista
                 if(alumno.validarEmail(correo))
                 {
                     System.out.println("El correo es valido");
@@ -54,11 +67,13 @@ public class CrearObjeto {
                     System.out.println("El correo no es valido");
                 }
                 char op;
+                //Preguntamos si queremos guardar mas datos en la lista
                 System.out.print("Guardar mas datos? (s/n) ");
                 sc.nextLine();
                 op = sc.nextLine().charAt(0);
                 if(op == 'n')
                 {
+                    //Si decimos que no lo guardamos en el fichero
                     objectOutputStream.writeObject(antiguoAlumnos);
                     salir = true;
                 }
