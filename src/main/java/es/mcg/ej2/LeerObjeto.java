@@ -11,14 +11,13 @@ public class LeerObjeto {
         File file = null;
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
-        List<NExpediente> expedientes = null;
-        
+        List<Expediente> expedientes = null;
         try 
         {
             file = new File("notasAlumnos.obj");
             fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            expedientes = (List<NExpediente>) objectInputStream.readObject();
+            expedientes = (List<Expediente>) objectInputStream.readObject();
             for(int i = 0; i < expedientes.size(); i++)
             {
                 System.out.println(expedientes.get(i));
