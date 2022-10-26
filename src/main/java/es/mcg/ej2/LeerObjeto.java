@@ -4,23 +4,24 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.List;
 
 public class LeerObjeto {
     public static void main(String[] args) {
         File file = null;
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
+        List<NExpediente> expedientes = null;
         
         try 
         {
             file = new File("notasAlumnos.obj");
             fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            NExpediente expediente = null;
-            for(int i = 0; i < 5; i++)
+            expedientes = (List<NExpediente>) objectInputStream.readObject();
+            for(int i = 0; i < expedientes.size(); i++)
             {
-                expediente = (NExpediente) objectInputStream.readObject();
-                System.out.println(expediente);
+                System.out.println(expedientes.get(i));
             }
         } 
         catch (IOException ioException) 
