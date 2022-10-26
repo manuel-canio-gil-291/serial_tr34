@@ -35,8 +35,8 @@ public class CrearObjeto {
             {
                 file2.createNewFile();
             }
-            fileOutputStream = new FileOutputStream(file);
-            fileOutputStream2 = new FileOutputStream(file2);
+            fileOutputStream = new FileOutputStream(file, false);
+            fileOutputStream2 = new FileOutputStream(file2, false);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream2 = new ObjectOutputStream(fileOutputStream2);
             Cuenta cuenta = null;
@@ -45,7 +45,6 @@ public class CrearObjeto {
             clientes = new ArrayList<Cliente>();
             do{   
                 System.out.print("Digame el nombre del cliente: ");
-                sc.nextLine();
                 nombreCliente = sc.nextLine();
                 System.out.print("Indicame la direccion del cliente: ");
                 direccion = sc.nextLine();
@@ -75,7 +74,7 @@ public class CrearObjeto {
                 clientes.add(cliente);
                 char op = 's';
                 System.out.print("Desea guardar mas datos? (s/n) ");
-                op = sc.next().charAt(0);
+                op = sc.nextLine().charAt(0);
                 if(op == 's')
                 {
                     salir = false;
