@@ -1,9 +1,5 @@
 package es.mcg.ej1;
-/**
- * Esta clase crea los objetos de Cliente y Cuenta, los almacena en un List y los guarda en un fichero
- * @author Manuel Canio Gil
- * @version 1.0
- */
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,10 +7,14 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * <p>Esta clase crea los objetos de Cliente y Cuenta, los almacena en un List y los guarda en un fichero.</p>
+ * @author Manuel Canio Gil
+ * @version 1.0
+ */
 public class CrearObjeto {
     /**
-     * Metodo ejecutable para crear objetos Cliente y Cuenta
+     * Metodo ejecutable para crear objetos Cliente y Cuenta.
      * @param args
      */
     public static void main(String[] args) {
