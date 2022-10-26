@@ -13,7 +13,7 @@ public class CrearObjeto {
         File file = null;
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
-        List<NExpediente> expedientes = null;
+        List<Expediente> expedientes = null;
         Scanner sc = new Scanner(System.in);
         try 
         {
@@ -27,7 +27,7 @@ public class CrearObjeto {
             double nota1,nota2,nota3;
             fileOutputStream = new FileOutputStream(file, false);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            expedientes = new ArrayList<NExpediente>();
+            expedientes = new ArrayList<Expediente>();
             do{
                 System.out.print("Dime el nombre del alumno: ");
                 nombre = sc.nextLine();
@@ -38,7 +38,7 @@ public class CrearObjeto {
                 nota2 = sc.nextDouble();
                 System.out.print("Nota 3: ");
                 nota3 = sc.nextDouble();
-                NExpediente expediente = new NExpediente(nombre, nota1, nota2, nota3);
+                Expediente expediente = new Expediente(nombre, nota1, nota2, nota3);
                 if(expediente.calcularNotaMedia(nota1, nota2, nota3) > 7)
                 {
                     System.out.println("La nota media es superior de 7");
