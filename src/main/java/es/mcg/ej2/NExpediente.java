@@ -1,8 +1,6 @@
 package es.mcg.ej2;
 
 import java.io.Serializable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class NExpediente implements Serializable{
     /**
@@ -10,25 +8,13 @@ public class NExpediente implements Serializable{
      */
     private static final long serialVersionUID = 1l;
     
-    private final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
-    private String nombre,email;
+    private String nombre;
     private double nota1, nota2, nota3;
     
     public NExpediente(String nombre, double nota1, double nota2, double nota3) 
     {
         this.nombre = nombre;
-        this.nota1 = nota1;
-        this.nota2 = nota2;
-        this.nota3 = nota3;
-    }
-
-    public NExpediente(String nombre, String email, double nota1, double nota2, double nota3) 
-    {
-        this.nombre = nombre;
-        this.email = email;
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
@@ -77,24 +63,6 @@ public class NExpediente implements Serializable{
     public double calcularNotaMedia(double nota1, double nota2, double nota3)
     {
         return (nota1+nota2+nota3)/3;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public boolean validarEmail(String email)
-    {
-        if(email == null)
-        {
-            return false;
-        }
-        Matcher matcher = EMAIL_PATTERN.matcher(email);
-        return matcher.matches();
     }
 
     @Override
