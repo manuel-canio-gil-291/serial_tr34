@@ -1,18 +1,18 @@
 package es.mcg.ej1;
-/**
- * Esta clase lee las listas de clientes y cuentas cargados en los ficheros
- * @author Manuel Canio Gil
- * @version 1.0
- */
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.List;
-
+/**
+ * Esta clase lee las listas de clientes y cuentas cargados en los ficheros.
+ * @author Manuel Canio Gil
+ * @version 1.0
+ */
 public class LeerObjeto {
     /**
-     * Metodo ejecutable para leer las listas
+     * Metodo ejecutable para leer las listas de los clientes y cuentas del banco.
      * @param args
      */
     public static void main(String[] args) {
