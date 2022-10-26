@@ -22,7 +22,7 @@ public class CrearObjeto {
             }
             String nombre;
             double nota1,nota2,nota3;
-            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream = new FileOutputStream(file, true);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             System.out.print("Dime el nombre del alumno: ");
             nombre = sc.nextLine();
