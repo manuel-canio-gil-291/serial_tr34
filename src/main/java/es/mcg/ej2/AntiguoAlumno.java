@@ -3,7 +3,7 @@ package es.mcg.ej2;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AntiguoAlumno extends NExpediente{
+public class AntiguoAlumno extends Expediente{
     /**
      * Serial Version UID
      */
