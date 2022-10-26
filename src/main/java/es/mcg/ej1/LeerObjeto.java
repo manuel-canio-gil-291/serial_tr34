@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.List;
 
 public class LeerObjeto {
     public static void main(String[] args) {
@@ -19,21 +20,12 @@ public class LeerObjeto {
             objectInputStream = new ObjectInputStream(fileInputStream);
             fileInputStream2 = new FileInputStream(file2);
             objectInputStream2 = new ObjectInputStream(fileInputStream2);
-            Cuenta cuenta = null;
-            Cliente cliente = null;
-            for(int i = 0; i < 10; i++)
+            List<Cliente> clientes = null;
+            clientes = (List<Cliente>) objectInputStream.readObject();
+            for(int i = 0; i < clientes.size(); i++)
             {
-                cuenta = (Cuenta) objectInputStream2.readObject();
-                for(int j = 0; j < 10; j++)
-                {
-                    cliente = (Cliente) objectInputStream.readObject();
-                    if(cuenta.getEstado() == Estado.DEUDOR)
-                    {
-                        System.out.println(cliente);
-                    }
-                }
+                System.out.println(clientes.get(i));
             }
-            
         }
         catch (IOException ioException) 
         {
