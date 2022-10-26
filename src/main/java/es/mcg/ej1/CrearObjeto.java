@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CrearObjeto {
@@ -12,13 +14,17 @@ public class CrearObjeto {
         int ncliente, ncuenta;
         double saldo;
         String estado, nombreCuenta;
+        boolean salir = false;
         File file = null, file2 = null;
         FileOutputStream fileOutputStream = null, fileOutputStream2 = null;
         ObjectOutputStream objectOutputStream = null, objectOutputStream2 = null;
+        List<Cuenta> cuentas = null;
+        List<Cliente> clientes = null;
         Scanner sc = new Scanner(System.in);
 
         try 
         {
+        
             file = new File("datosCliente.obj");
             file2 = new File("datosCuenta.obj");
             if(!file.exists())
@@ -29,66 +35,58 @@ public class CrearObjeto {
             {
                 file2.createNewFile();
             }
-            fileOutputStream = new FileOutputStream(file, true);
-            fileOutputStream2 = new FileOutputStream(file2, true);
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream2 = new FileOutputStream(file2);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream2 = new ObjectOutputStream(fileOutputStream2);
-            System.out.print("Digame el nombre del cliente: ");
-            nombreCliente = sc.nextLine();
-            System.out.print("Indicame la direccion del cliente: ");
-            direccion = sc.nextLine();
-            System.out.print("Introduzca el saldo inicial (si no posee saldo, escriba 0): ");
-            saldo = sc.nextDouble();
-            sc.nextLine();
-            System.out.print("Digame el nombre de la cuenta: ");
-            nombreCuenta = sc.nextLine();
-            System.out.print("Digame el estado de la cuenta: ");
-            estado = sc.nextLine();
-            ncuenta = (int) Math.floor(Math.random()*1000000000);
-            ncliente = (int) Math.floor(Math.random()*1000000000);
-            Cuenta cuenta = new Cuenta(nombreCuenta, ncuenta);
-            Cliente cliente = new Cliente(nombreCliente, direccion, ncliente, saldo, cuenta);
-            switch(estado)
-            {
-                case "Al dia": cuenta.setEstado(Estado.ALDIA);break;
-                case "Atrasada": cuenta.setEstado(Estado.ATRASADA);break;
-                case "Deudor": cuenta.setEstado(Estado.DEUDOR);break;
-                default: {
-                    System.err.println("ERROR FATAL. El estado introducido no es valido. El programa se ha cerrado inesperadamente");
-                    System.exit(210);
+            Cuenta cuenta = null;
+            Cliente cliente = null;
+            cuentas = new ArrayList<Cuenta>();
+            clientes = new ArrayList<Cliente>();
+            do{   
+                System.out.print("Digame el nombre del cliente: ");
+                sc.nextLine();
+                nombreCliente = sc.nextLine();
+                System.out.print("Indicame la direccion del cliente: ");
+                direccion = sc.nextLine();
+                System.out.print("Introduzca el saldo inicial (si no posee saldo, escriba 0): ");
+                saldo = sc.nextDouble();
+                sc.nextLine();
+                System.out.print("Digame el nombre de la cuenta: ");
+                nombreCuenta = sc.nextLine();
+                System.out.print("Digame el estado de la cuenta: ");
+                estado = sc.nextLine();
+                ncuenta = (int) Math.floor(Math.random()*1000000000);
+                ncliente = (int) Math.floor(Math.random()*1000000000);
+                cuenta = new Cuenta(nombreCuenta, ncuenta);
+                cliente = new Cliente(nombreCliente, direccion, ncliente, saldo, cuenta);
+                switch(estado)
+                {
+                    case "Al dia": cuenta.setEstado(Estado.ALDIA);break;
+                    case "Atrasada": cuenta.setEstado(Estado.ATRASADA);break;
+                    case "Deudor": cuenta.setEstado(Estado.DEUDOR);break;
+                    default: {
+                        System.err.println("ERROR FATAL. El estado introducido no es valido. El programa se ha cerrado inesperadamente");
+                        System.exit(210);
+                    }
                 }
-            }
-            System.out.println("Estos son los datos del cliente y cuenta guardados:\n"+cliente);
-            char op;
-            System.out.println("Quieres guardar los datos de la cuenta en el fichero '"+file2+"'? (s/n)");
-            op = sc.next().charAt(0);
-            if(op == 's')
-            {
-                objectOutputStream2.writeObject(cuenta);
-            }
-            else if(op == 'n')
-            {
-                System.exit(0);
-            }
-            else
-            {
-                System.err.println("ERROR. Opcion no valida");
-            }
-            System.out.println("Quieres guardar los datos del cliente en el fichero '"+file+"'? (s/n)");
-            op = sc.next().charAt(0);
-            if(op == 's')
-            {
-                
-                objectOutputStream.writeObject(cliente);
-            }
-            else if(op == 'n')
-            {
-                System.exit(0);
-            }
-            else
-            {
-                System.err.println("ERROR. Opcion no valida");
-            }
+                System.out.println("Estos son los datos del cliente y cuenta guardados:\n"+cliente);
+                cuentas.add(cuenta);
+                clientes.add(cliente);
+                char op = 's';
+                System.out.print("Desea guardar mas datos? (s/n) ");
+                op = sc.next().charAt(0);
+                if(op == 's')
+                {
+                    salir = false;
+                }
+                else if(op == 'n')
+                {
+                    salir = true;
+                    objectOutputStream.writeObject(clientes);
+                    objectOutputStream2.writeObject(cuentas);
+                }
+            }while(!salir);
         } 
         catch (IOException ioException) 
         {
