@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.List;
 
 import es.mcg.ej2.AntiguoAlumno;
 
@@ -12,17 +13,16 @@ public class LeerObjeto {
         File file = null;
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
-
+        List<AntiguoAlumno> antiguoAlumnos = null;
         try 
         {
             file = new File("CorreosAlumnos.obj");
             fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            AntiguoAlumno alumno = null;
-            for(int i = 0; i < 5; i++)
+            antiguoAlumnos = (List<AntiguoAlumno>) objectInputStream.readObject();
+            for(int i = 0; i < antiguoAlumnos.size(); i++)
             {
-                alumno = (AntiguoAlumno) objectInputStream.readObject();
-                System.out.println(alumno);
+                System.out.println(antiguoAlumnos.get(i));
             }
         } 
         catch (IOException ioException) 
