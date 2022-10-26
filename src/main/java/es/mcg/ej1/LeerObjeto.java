@@ -1,5 +1,9 @@
 package es.mcg.ej1;
-
+/**
+ * Esta clase lee las listas de clientes y cuentas cargados en los ficheros
+ * @author Manuel Canio Gil
+ * @version 1.0
+ */
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,6 +11,10 @@ import java.io.ObjectInputStream;
 import java.util.List;
 
 public class LeerObjeto {
+    /**
+     * Metodo ejecutable para leer las listas
+     * @param args
+     */
     public static void main(String[] args) {
         File file = null, file2 = null;
         FileInputStream fileInputStream = null, fileInputStream2 = null;
@@ -21,9 +29,12 @@ public class LeerObjeto {
             fileInputStream2 = new FileInputStream(file2);
             objectInputStream2 = new ObjectInputStream(fileInputStream2);
             List<Cliente> clientes = null;
+            //Leemos solamente la lista de clientes cargadas en el fichero,
+            //ya que viene cargado tambien sus cuentas vinculadas
             clientes = (List<Cliente>) objectInputStream.readObject();
             for(int i = 0; i < clientes.size(); i++)
             {
+                //Obtenemos los datos de los clientes y de las cuentas asociadas
                 System.out.println(clientes.get(i));
             }
         }
