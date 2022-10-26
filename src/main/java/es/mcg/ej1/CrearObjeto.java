@@ -1,5 +1,9 @@
 package es.mcg.ej1;
-
+/**
+ * Esta clase crea los objetos de Cliente y Cuenta, los almacena en un List y los guarda en un fichero
+ * @author Manuel Canio Gil
+ * @version 1.0
+ */
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,6 +13,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CrearObjeto {
+    /**
+     * Metodo ejecutable para crear objetos Cliente y Cuenta
+     * @param args
+     */
     public static void main(String[] args) {
         String nombreCliente, direccion;
         int ncliente, ncuenta;
@@ -18,7 +26,9 @@ public class CrearObjeto {
         File file = null, file2 = null;
         FileOutputStream fileOutputStream = null, fileOutputStream2 = null;
         ObjectOutputStream objectOutputStream = null, objectOutputStream2 = null;
+        //Hacemos una lista de cuentas
         List<Cuenta> cuentas = null;
+        //Hacemos una lista de clientes
         List<Cliente> clientes = null;
         Scanner sc = new Scanner(System.in);
 
@@ -39,22 +49,29 @@ public class CrearObjeto {
             fileOutputStream2 = new FileOutputStream(file2, false);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream2 = new ObjectOutputStream(fileOutputStream2);
+            //Llamamos a los objetos
             Cuenta cuenta = null;
             Cliente cliente = null;
             cuentas = new ArrayList<Cuenta>();
             clientes = new ArrayList<Cliente>();
             do{   
+                //Pedimos los datos por pantalla, primero el nombre del cliente
                 System.out.print("Digame el nombre del cliente: ");
                 nombreCliente = sc.nextLine();
+                //Despues la direccion del cliente
                 System.out.print("Indicame la direccion del cliente: ");
                 direccion = sc.nextLine();
+                //Despues el saldo inicial
                 System.out.print("Introduzca el saldo inicial (si no posee saldo, escriba 0): ");
                 saldo = sc.nextDouble();
                 sc.nextLine();
+                //Despues pedimos el nombre de la cuenta a asignar
                 System.out.print("Digame el nombre de la cuenta: ");
                 nombreCuenta = sc.nextLine();
+                //Indicamos el estado de la cuenta
                 System.out.print("Digame el estado de la cuenta: ");
                 estado = sc.nextLine();
+                //El numero de cuenta y cliente generara uno aleatorio
                 ncuenta = (int) Math.floor(Math.random()*1000000000);
                 ncliente = (int) Math.floor(Math.random()*1000000000);
                 cuenta = new Cuenta(nombreCuenta, ncuenta);
@@ -65,6 +82,7 @@ public class CrearObjeto {
                     case "Atrasada": cuenta.setEstado(Estado.ATRASADA);break;
                     case "Deudor": cuenta.setEstado(Estado.DEUDOR);break;
                     default: {
+                        //Si ninguna de las opciones vienen dadas en la enumeracion, se cierra el programa
                         System.err.println("ERROR FATAL. El estado introducido no es valido. El programa se ha cerrado inesperadamente");
                         System.exit(210);
                     }
@@ -72,6 +90,7 @@ public class CrearObjeto {
                 System.out.println("Estos son los datos del cliente y cuenta guardados:\n"+cliente);
                 cuentas.add(cuenta);
                 clientes.add(cliente);
+                //Pedimos confirmacion si queremos seguir agregando mas datos
                 char op = 's';
                 System.out.print("Desea guardar mas datos? (s/n) ");
                 op = sc.nextLine().charAt(0);
@@ -81,6 +100,7 @@ public class CrearObjeto {
                 }
                 else if(op == 'n')
                 {
+                    //Si decimos que no, guardamos las listas tanto las cuentas como los clientes
                     salir = true;
                     objectOutputStream.writeObject(clientes);
                     objectOutputStream2.writeObject(cuentas);
