@@ -68,7 +68,7 @@ public class CrearObjeto {
                 if(op == 'n')
                 {
                     //Si decimos que no, guardamos la lista en el fichero
-                    objectOutputStream.writeObject(expediente);
+                    objectOutputStream.writeObject(expedientes);
                     salir = true;
                 }
                 else if(op == 's')
