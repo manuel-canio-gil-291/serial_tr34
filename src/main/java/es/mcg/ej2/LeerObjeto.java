@@ -8,13 +8,9 @@ import java.util.List;
 /**
  * <p>Esta clase lee el contenido de la lista de las tres notas de los alumnos en el fichero
  * y los muestra por la pantalla de la consola.</p>
- * <p>Hay un bug en el codigo, en el momento de que el ejecutable intenta leer la lista que contiene
- * el fichero, salta una excepcion llamado {@code ClassCastException}. Esto impide que la clase
- * {@code List<Expediente>} lea los datos del fichero correctamente, por lo que no puede mostrarlos por
- * la pantalla.</p>
  * 
  * @author Manuel Canio Gil
- * @version 1.0
+ * @version 1.1
  * 
  */
 public class LeerObjeto {
@@ -34,7 +30,6 @@ public class LeerObjeto {
             objectInputStream = new ObjectInputStream(fileInputStream);
             //Leemos el contenido de la lista de las tres notas de los alumnos cargados previamente
             //en el fichero.
-            //Aqui es donde salta la excepcion
             expedientes = (List<Expediente>) objectInputStream.readObject();
             for(int i = 0; i < expedientes.size(); i++)
             {
