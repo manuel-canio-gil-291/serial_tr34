@@ -22,7 +22,7 @@ public class LeerObjeto {
         File file = null;
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
-        List<Expediente> expedientes = null;
+        List<Alumno> expedientes = null;
         try 
         {
             file = new File("notasAlumnos.obj");
@@ -30,7 +30,7 @@ public class LeerObjeto {
             objectInputStream = new ObjectInputStream(fileInputStream);
             //Leemos el contenido de la lista de las tres notas de los alumnos cargados previamente
             //en el fichero.
-            expedientes = (List<Expediente>) objectInputStream.readObject();
+            expedientes = (List<Alumno>) objectInputStream.readObject();
             for(int i = 0; i < expedientes.size(); i++)
             {
                 //Mostramos por pantalla el nombre del alumno, las tres notas y la media
