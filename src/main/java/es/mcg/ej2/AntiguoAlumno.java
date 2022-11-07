@@ -2,6 +2,8 @@ package es.mcg.ej2;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import es.mcg.utils.Constants;
 /**
  * <p>Esta clase define el alumno antiguo que hereda de los atributos padre
  * ({@code nombre}, {@code nota1}, {@code nota2}, {@code nota3}) y tiene su correo de contacto.</p>
@@ -9,7 +11,7 @@ import java.util.regex.Pattern;
  * @author Manuel Canio Gil
  * @version 1.0
  */
-public class AntiguoAlumno extends Expediente{
+public class AntiguoAlumno extends Alumno{
     /**
      * Serial Version UID
      */
@@ -17,12 +19,11 @@ public class AntiguoAlumno extends Expediente{
     /**
      * Valor del email.
      */
-    private final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    
     /**
      * Validador del email.
      */
-    private final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+    private final Pattern EMAIL_PATTERN;
     /**
      * Correo del antiguo alumno.
      */
@@ -37,7 +38,7 @@ public class AntiguoAlumno extends Expediente{
      */
     public AntiguoAlumno(String nombre, double nota1, double nota2, double nota3, String email) {
         super(nombre, nota1, nota2, nota3);
-        this.email = email;
+        this.EMAIL_PATTERN = Pattern.compile(Constants.EMAIL_REGEX);
     }
     /**
      * Obtiene el correo del alumno.
