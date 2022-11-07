@@ -22,7 +22,7 @@ public class CrearObjeto {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         //Hacemos una lista de los alumnos
-        List<Expediente> expedientes = null;
+        List<Alumno> expedientes = null;
         Scanner sc = new Scanner(System.in);
         try 
         {
@@ -36,7 +36,7 @@ public class CrearObjeto {
             double nota1,nota2,nota3;
             fileOutputStream = new FileOutputStream(file, false);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            expedientes = new ArrayList<Expediente>();
+            expedientes = new ArrayList<Alumno>();
             do{
                 //Pedimos los datos necesarios, primero el nombre del alumno
                 System.out.print("Dime el nombre del alumno: ");
@@ -49,7 +49,7 @@ public class CrearObjeto {
                 nota2 = sc.nextDouble();
                 System.out.print("Nota 3: ");
                 nota3 = sc.nextDouble();
-                Expediente expediente = new Expediente(nombre, nota1, nota2, nota3);
+                Alumno expediente = new Alumno(nombre, nota1, nota2, nota3);
                 //Si la media de las tres da mayor que 7, los almacena en un List
                 if(expediente.calcularNotaMedia(nota1, nota2, nota3) > 7)
                 {
